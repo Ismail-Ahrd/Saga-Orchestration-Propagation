@@ -1,0 +1,30 @@
+server:
+  port: 8081
+---
+spring:
+  cloud:
+    function:
+      definition: processor
+spring.cloud.stream:
+  function:
+    definition: processor
+  bindings:
+    processor-in-0:
+      destination: topic1-created
+    processor-out-0:
+      destination: topic1-updated
+  kafka:
+    binder:
+      replication-factor: 1
+---
+
+service3:
+  endpoint: http://localhost:8083
+service2:
+  endpoint: http://localhost:8082
+orchestrator2:
+  endpoint: http://localhost:8088
+---
+
+propagation:
+  type: true

@@ -1,0 +1,37 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    function:
+      definition: supplier;consumer
+spring.cloud.stream:
+  function:
+    definition: supplier;consumer
+  bindings:
+    supplier-out-0:
+      destination: topic1-created
+    consumer-in-0:
+      destination: topic1-updated
+---
+spring:
+  jpa:
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+  r2dbc:
+    url: r2dbc:h2:mem:///testdb
+    username: root
+    password:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: root
+    password:
+  sql:
+    init:
+      platform: h2
+      mode: always
+
+
+

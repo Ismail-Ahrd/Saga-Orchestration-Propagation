@@ -1,0 +1,11 @@
+server:
+  port: 8088
+
+
+service4:
+  endpoint: http://localhost:8084
+
+service5:
+  endpoint: http://localhost:8085
+propagation:
+  type: true
